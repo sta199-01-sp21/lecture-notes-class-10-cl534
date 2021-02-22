@@ -50,16 +50,26 @@ xtabs(~ Treatment + Improved, data = Arthritis) %>%
 
 - How many patients were enrolled in the clinical trial?
 
+There were 84 patients enrolled in the clinical trial.
+
 - What is the probability a randomly selected patient received the placebo?
+
+The probability is 51.2%.
 
 - What is the probability a randomly selected patient received the placebo
   and had a marked improvement?
   
+  The probability is 8.3%
+  
 - What is the probability a randomly selected patient received the placebo
   and the treatment?
   
+  Disjoint probability: two events not possible at the same time. The probability is 0%.
+  
 - What is the probability a randomly selected patient had some improvement or
   was on the treatment?
+  
+  The probability is 57.1%
 
 ## Using computer simulations to calculate probabilities
 
@@ -158,15 +168,20 @@ Perform a simulation to compute this empirical probability.
 Write down your guess to the answer before you calculate it.
 
 ```{r simulate_rolls}
-
+roll_results <- tibble(
+  die_1 = replicate(n = 10000, expr = sample(1:6, size =1)),
+  die_2 = replicate(n = 10000, expr = sample(1:6, size =1))
+)
 ```
 
 ```{r identify_events}
 
 ```
 
-```{r summarize_rolls}
-
+```{r summarize_rolls, eval = FALSE}
+roll_results %>%
+  summarize(event_1_prob = mean(event_1),
+            event_2_prob = mean(event_2))
 ```
 
 ## Additional Resources-please look at before Weds.
